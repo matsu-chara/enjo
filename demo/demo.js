@@ -102,7 +102,7 @@
       },
       content: {
         $view: $content,
-        value: "テストマーキー"
+        value: "テストTodo"
       },
       submit: {
         $view: $submit,
@@ -149,7 +149,7 @@
       render(data.todos);
     }
 
-    // マーキー配列をulに変換
+    // Todo配列をulに変換
     function createtodoList(todos) {
       var ul = $("<ul>").attr("id", "todo-ul");
 
@@ -160,7 +160,7 @@
       return ul;
     }
 
-    // マーキーをliに変換
+    // Todoをliに変換
     function createtodoItem(todo) {
       var li = $("<li>").addClass("todo-item");
 
