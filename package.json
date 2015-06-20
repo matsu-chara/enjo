@@ -1,15 +1,10 @@
 {
   "name": "enjo.js",
   "version": "0.1.0",
-  "scripts": {
-    "test": "./node_modules/.bin/gulp test"
-  },
   "devDependencies": {
-    "browserify": "^9.0.3",
-    "coffee-script": "^1.9.3",
+    "chai": "^3.0.0",
     "jquery": "^1.11.3",
-    "mocha": "^1.21.4",
-    "sinon": "^1.12.2",
-    "vinyl-source-stream": "^1.0.0"
+    "mocha": "^2.2.5",
+    "sinon": "^1.15.3"
   }
 }
