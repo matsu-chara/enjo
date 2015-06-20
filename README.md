@@ -70,7 +70,7 @@ enjoR.get("/todo", done);
 setterで値を変更すると`enjo-update`というイベントが飛ぶので、
 それをViewModelで取得してViewを書き換えることが出来ます。
 
-```
+```javascript
 var that = {};
 var enjoM = enjo($).Model();
 
@@ -87,7 +87,6 @@ var t = fire.get("todos");
 
 // setの例
 fire.set("todos", t);
-};
 ```
 
 ### ViewModel
@@ -103,28 +102,28 @@ Viewのchangedイベントを取得して、値を自動的に反映してくれ
 var enjoVm = enjo($).ViewModel();
 
 var fire = enjoVm.bindParams({
-    url: {
+  url: {
     $view: $url,
     value: "http://google.com"
-    },
-    content: {
+  },
+  content: {
     $view: $content,
     value: "テストTodo"
-    },
-    submit: {
+  },
+  submit: {
     $view: $submit,
     event: "click",
     callback: function(e, fire) {
-        e.preventDefault();
-        var m = model.newtodo(
+      e.preventDefault();
+      var m = model.newtodo(
         fire.get("url"),
         fire.get("content")
-        );
-        if(model.validate(m)) {
+      );
+      if(model.validate(m)) {
         model.add(m);
-        }
+      }
     }
-    }
+  }
 });
 ```
 
@@ -135,6 +134,6 @@ constructorで`enjoVm.init`よんであげましょう。
 
 ```javascript
 function construct() {
-    enjoVm.init(model, onUpdate);
+  enjoVm.init(model, onUpdate);
 }
 ```
