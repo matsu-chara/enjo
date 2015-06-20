@@ -1,0 +1,19 @@
+{
+  "name": "enjo.js",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "coffee-script": "^1.9.3",
+    "gulp": "^3.8.11",
+    "gulp-espower": "^0.10.0",
+    "gulp-mocha": "^2.0.0",
+    "jquery": "^1.11.3",
+    "mocha": "^2.1.0",
+    "power-assert": "^0.10.2",
+    "sinon": "^1.12.2",
+    "vinyl-source-stream": "^1.0.0"
+  }
+}
