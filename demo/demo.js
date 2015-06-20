@@ -70,8 +70,14 @@
     };
 
     that.validate = function (todo) {
-      var isValid = (todo.content !== "" && todo.url.match("^http"));
-      return isValid;
+      var err = "";
+      if (todo.content === "") {
+        err += "表示文字列が空白です。";
+      }
+      if (!todo.url.match("^http")) {
+        err += "URLがhttpから開始していません。";
+      }
+      return err;
     };
 
     function update() {
@@ -113,8 +119,11 @@
             fire.get("url"),
             fire.get("content")
           );
-          if(model.validate(m)) {
+          var err = model.validate(m);
+          if(err === "") {
             model.add(m);
+          } else {
+            console.error(err);
           }
         }
       }
