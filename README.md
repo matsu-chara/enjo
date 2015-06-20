@@ -1,5 +1,7 @@
 # enjo.js
 
+[![Code Climate](https://codeclimate.com/github/matsu-chara/enjo.js/badges/gpa.svg)](https://codeclimate.com/github/matsu-chara/enjo.js)
+
 > jQueryしか使えない！そんなときでも大丈夫。
 
 enjo.jsはjQueryに依存した双方向データバインディングができるMVVMフレームワークです。
@@ -8,6 +10,20 @@ enjo.jsはjQueryに依存した双方向データバインディングができ�
 
 勉強用なので実用性はありません。プロダクトで使うと炎上します。
 
+## demo
+
+`demo`にTodoリストのサンプルがあります。
+そのままでも動きますが、
+
+```
+GET /todo
+POST /todo
+DELETE /todo/:todoId
+```
+
+のようなルーティングでよしなにやるサーバーを立てると、
+DBへ保存するまでの一連の流れを実行することが出来ます。
+(Repository内のコメントアウトを適宜外す必要があります。)
 
 ## 使い方
 
