@@ -93,7 +93,7 @@ var fire = enjoVm.bindParams({
     },
     content: {
     $view: $content,
-    value: "テストマーキー"
+    value: "テストTodo"
     },
     submit: {
     $view: $submit,
