@@ -1,3 +1,9 @@
 node_modules
 
 test/espowered
+
+# OSX meta data
+.DS_store
+# emacs, vim
+*~
+*.swp
