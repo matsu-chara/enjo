@@ -1,7 +1,7 @@
 {
-  "name": "enjo.js",
-  "version": "0.2.2",
-  "homepage": "https://github.com/matsu-chara/enjo.js",
+  "name": "enjo",
+  "version": "0.2.3",
+  "homepage": "https://github.com/matsu-chara/enjo",
   "authors": [
     "matsu-chara <matsuy00@gmail.com>"
   ],
