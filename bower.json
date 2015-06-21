@@ -1,0 +1,21 @@
+{
+  "name": "enjo.js",
+  "version": "0.2.2",
+  "homepage": "https://github.com/matsu-chara/enjo.js",
+  "authors": [
+    "matsu-chara <matsuy00@gmail.com>"
+  ],
+  "description": "jQuery Based MVVM Framework",
+  "main": "lib/enjo.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
