@@ -1,1 +1,7 @@
 node_modules
+
+# OSX meta data
+.DS_store
+# emacs, vim
+*~
+*.swp

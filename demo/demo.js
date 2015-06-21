@@ -4,7 +4,7 @@
   // namespace todo
   var todo = todo || {};
 
-  todo.Repository = function(enjoR) {
+  todo.repository = function(enjoR) {
     var that = {};
 
     that.gettodos = function(done) {
@@ -23,7 +23,7 @@
     return that;
   };
 
-  todo.Model = function(repository, enjoM) {
+  todo.model = function(repository, enjoM) {
     var that = {};
 
     var fire = enjoM.bindParams(that, {
@@ -93,7 +93,7 @@
     return that;
   };
 
-  todo.FormViewModel = function($view, model, enjoVm) {
+  todo.formViewModel = function($view, model, enjoVm) {
     // view dependencies
     var $url     = $view.find("#todo-url");
     var $content = $view.find("#todo-content");
@@ -143,7 +143,7 @@
     construct();
   };
 
-  todo.ListViewModel = function($view, model, enjoVm) {
+  todo.listViewModel = function($view, model, enjoVm) {
     function construct() {
       render([]);
       enjoVm.init(model, onUpdate);
@@ -209,10 +209,10 @@
     var $formView = $containerView.children("#todo-form");
 
     var e = enjo($);
-    var todoRepository = todo.Repository(e.Repository());
-    var todoModel = todo.Model(todoRepository, e.Model());
-    todo.ListViewModel($listView, todoModel, e.ViewModel());
-    todo.FormViewModel($formView, todoModel, e.ViewModel());
+    var todoRepository = todo.repository(e.repository());
+    var todoModel = todo.model(todoRepository, e.model());
+    todo.listViewModel($listView, todoModel, e.viewModel());
+    todo.formViewModel($formView, todoModel, e.viewModel());
 
     todoModel.init();
   });
