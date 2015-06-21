@@ -29,11 +29,21 @@ DBへ保存するまでの一連の流れを実行することが出来ます。
 
 ### 初期化
 
-enjoはjQueryに依存しているので
+HTMLでの読込は例えば以下のように行えます。
 
+```html
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="../lib/enjo.js"></script>
+<script src="main.js"></script>
+```
+
+JavaScriptでは、以下のように初期化を行います。
+
+まず、enjoはjQueryに依存しているので
 `var e = enjo($);`としてjQueryを渡しましょう。
+
 あとは`e.Repository`や`e.Model()`, `e.ViewModel`をそれぞれのオブジェクトに
-渡してあげればOkです。
+渡してあげればOKです。
 
 ```javascript
 $(document).ready(function(){
