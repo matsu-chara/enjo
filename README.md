@@ -1,5 +1,7 @@
 # enjo
 
+[![Code Climate](https://codeclimate.com/github/matsu-chara/enjo/badges/gpa.svg)](https://codeclimate.com/github/matsu-chara/enjo)
+
 > jQueryしか使えない！そんなときでも大丈夫。
 
 enjoはjQueryに依存した双方向データバインディングができるMVVMフレームワークです。
