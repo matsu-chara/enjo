@@ -1,6 +1,6 @@
 {
   "name": "enjo.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "devDependencies": {
     "chai": "^3.0.0",
     "jquery": "^1.11.3",
