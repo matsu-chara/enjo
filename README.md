@@ -38,6 +38,18 @@ $(npm bin)/json-server db.json
 
 ## 使い方
 
+### インストール
+
+下記のどちらかの方法で入手することができます。
+
+```sh
+# リポジトリをclone
+git clone https://github.com/matsu-chara/enjo
+
+# bowerもOK
+bower install enjo
+```
+
 ### 初期化
 
 HTMLでの読込は例えば以下のように行えます。
