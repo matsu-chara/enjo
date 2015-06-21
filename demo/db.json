@@ -4,11 +4,6 @@
       "id": 1,
       "url": "http://google.com",
       "content": "テストTodo"
-    },
-    {
-      "id": 5,
-      "url": "http://google.com",
-      "content": "テストTodo"
     }
   ]
 }
