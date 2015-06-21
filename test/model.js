@@ -5,7 +5,7 @@ describe("Model", function() {
   var model;
 
   beforeEach(function(){
-    var enjoM = enjo($).Model();
+    var enjoM = enjo($).model();
     model = (function() {
       var that = {};
       that.fire = enjoM.bindParams(that, {

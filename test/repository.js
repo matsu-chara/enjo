@@ -5,7 +5,7 @@ describe("Repository", function() {
   var enjoR;
 
   beforeEach(function(){
-    enjoR = enjo($).Repository();
+    enjoR = enjo($).repository();
   });
 
   afterEach(function () {
@@ -22,7 +22,7 @@ describe("Repository", function() {
 
     var done = sinon.spy();
     var fail = sinon.spy();
-    enjoR.get("dummy/", done, fail);
+    enjoR.getRequest("dummy/", done, fail);
 
     assert(stub.called);
     assert(done.called);
@@ -40,7 +40,7 @@ describe("Repository", function() {
 
     var done = sinon.spy();
     var fail = sinon.spy();
-    enjoR.post("dummy/", null, done, fail);
+    enjoR.postRequest("dummy/", null, done, fail);
 
     assert(stub.called);
     assert(done.called);
@@ -57,7 +57,7 @@ describe("Repository", function() {
 
     var done = sinon.spy();
     var fail = sinon.spy();
-    enjoR.delete("dummy/", null, done, fail);
+    enjoR.deleteRequest("dummy/", null, done, fail);
 
     assert(stub.called);
     assert(done.called);

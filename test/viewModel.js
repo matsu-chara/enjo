@@ -8,7 +8,7 @@ describe("ViewModel", function() {
     var $text;
     beforeEach(function(){
       model = {};
-      enjoVm = enjo($).ViewModel();
+      enjoVm = enjo($).viewModel();
 
       // simulated jquery input
       $text = {
@@ -67,7 +67,7 @@ describe("ViewModel", function() {
     var $button;
     beforeEach(function(){
       model = {};
-      enjoVm = enjo($).ViewModel();
+      enjoVm = enjo($).viewModel();
 
       // simulated jquery input
       $button = {
