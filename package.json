@@ -4,6 +4,7 @@
   "devDependencies": {
     "chai": "^3.0.0",
     "jquery": "^1.11.3",
+    "json-server": "^0.7.19",
     "mocha": "^2.2.5",
     "sinon": "^1.15.3"
   }

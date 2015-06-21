@@ -8,17 +8,17 @@
     var that = {};
 
     that.gettodos = function(done) {
-      // enjoR.get("/todo", done);
+      enjoR.getRequest("http://localhost:3000/todos", done);
     };
 
     that.posttodo = function(todo, done) {
       setTimeout(function(){
-        // enjoR.post("/todo", todo, done);
+        enjoR.postRequest("http://localhost:3000/todos", todo, done);
       }, 1000);
     };
 
     that.deletetodo = function(todo, done) {
-      // enjoR.delete("/todo/" + todo.id, done);
+      enjoR.deleteRequest("http://localhost:3000/todos/" + todo.id, done);
     };
     return that;
   };
@@ -63,8 +63,11 @@
     that.add = function(todo) {
       fire.set("todos", fire.get("todos").concat(todo));
 
-      repository.posttodo(todo, function(registeredtodo){
-        todo.id = registeredtodo.id;
+      repository.posttodo(todo, function(registeredTodos){
+        fire.set("todos", fire.get("todos").filter(function(m) {
+          return m !== todo;
+        }));
+
         update();
       });
     };
@@ -182,6 +185,7 @@
 
       var span = $("<span>")
                   .addClass("todo-content")
+                  .css("color", (todo.id === null)? "#ff0000" : "")
                   .text(todo.content + ": ");
 
       var a = $("<a>")

@@ -1,5 +1,8 @@
 node_modules
 
+# demo data
+demo/db.json
+
 # OSX meta data
 .DS_store
 # emacs, vim

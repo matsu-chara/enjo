@@ -13,17 +13,28 @@ enjo.jsはjQueryに依存した双方向データバインディングができ�
 ## demo
 
 `demo`にTodoリストのサンプルがあります。
+`demo/index.html`を開けばひと通りの動作を試すことが出来ます。
+
 そのままでも動きますが、
 
 ```
-GET /todo
-POST /todo
-DELETE /todo/:todoId
+GET /todos
+POST /todos
+DELETE /todos/:id
 ```
 
 のようなルーティングでよしなにやるサーバーを立てると、
 DBへ保存するまでの一連の流れを実行することが出来ます。
-(Repository内のコメントアウトを適宜外す必要があります。)
+
+サンプルとして[json-server](https://github.com/typicode/json-server)を利用した物を用意してあります。
+
+```sh
+cd demo
+$(npm bin)/json-server db.json
+```
+
+とすると`localhost:3000`に簡易サーバーが立つので、
+`demo/index.html`をブラウザで開いて試してみてください。
 
 ## 使い方
 
