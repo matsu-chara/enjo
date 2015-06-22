@@ -5,7 +5,7 @@
   "authors": [
     "matsu-chara <matsuy00@gmail.com>"
   ],
-  "description": "jQuery Based MVVM Framework",
+  "description": "jQuery Based Front-End Framework",
   "main": "lib/enjo.js",
   "license": "MIT",
   "ignore": [
