@@ -8,15 +8,11 @@
 
 enjoはjQueryに依存した双方向データバインディングができるフロントエンドフレームワークです。
 
-MVVMっぽく作ったつもりだったのですが、ViewModelがViewに依存しているのでちょっと怪しいことが判明しました(´･_･`)
-
-この辺りの話はこちら→ http://matsu-chara.hatenablog.com/entry/2015/06/28/110000
-
 勉強用なので実用性はありません。プロダクトで使うと炎上します。
 
 ## demo
 
-`demo`にTodoリストのサンプルがあります。(https://github.com/matsu-chara/enjo/blob/master/demo/demo.js)
+`demo`にTodoリストのサンプルがあります。(https://github.com/matsu-chara/enjo/blob/master/demo/demo.js)  
 `demo/index.html`を開けばひと通りの動作を試すことが出来ます。
 
 そのままでも動きますが、
