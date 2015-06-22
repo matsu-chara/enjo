@@ -96,11 +96,10 @@
     return that;
   };
 
-  todo.formViewModel = function($view, model, enjoVm) {
-    // view dependencies
-    var $url     = $view.find("#todo-url");
-    var $content = $view.find("#todo-content");
-    var $submit  = $view.find("#todo-submit");
+  todo.formViewModel = function($views, model, enjoVm) {
+    var $url     = $views.url;
+    var $content = $views.content;
+    var $submit  = $views.submit;
 
     // viewとbindされた値(setで値を更新すればViewにも反映される)
     // eventとコールバックをbindすることも可能
@@ -211,12 +210,17 @@
     var $containerView = $("#todo-container");
     var $listView = $containerView.children("#todo-list");
     var $formView = $containerView.children("#todo-form");
+    var $formViews = {
+      url: $formView.find("#todo-url"),
+      content : $formView.find("#todo-content"),
+      submit : $formView.find("#todo-submit")
+    };
 
     var e = enjo($);
     var todoRepository = todo.repository(e.repository());
     var todoModel = todo.model(todoRepository, e.model());
     todo.listViewModel($listView, todoModel, e.viewModel());
-    todo.formViewModel($formView, todoModel, e.viewModel());
+    todo.formViewModel($formViews, todoModel, e.viewModel());
 
     todoModel.init();
   });
