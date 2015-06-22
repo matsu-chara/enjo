@@ -16,7 +16,7 @@ MVVMっぽく作ったつもりだったのですが、ViewModelがViewに依存
 
 ## demo
 
-`demo`にTodoリストのサンプルがあります。
+`demo`にTodoリストのサンプルがあります。(https://github.com/matsu-chara/enjo/blob/master/demo/demo.js)
 `demo/index.html`を開けばひと通りの動作を試すことが出来ます。
 
 そのままでも動きますが、
