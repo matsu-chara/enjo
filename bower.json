@@ -6,13 +6,13 @@
     "matsu-chara <matsuy00@gmail.com>"
   ],
   "description": "jQuery Based MVVM Framework",
-  "main": "dist/enjo.js",
+  "main": "lib/enjo.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    demo,
+    "demo",
     "test",
     "tests"
   ],

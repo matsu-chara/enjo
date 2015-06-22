@@ -1,6 +1,7 @@
 # enjo
 
 [![Bower version](https://badge.fury.io/bo/enjo.svg)](http://badge.fury.io/bo/enjo)
+[![Build Status](https://travis-ci.org/matsu-chara/enjo.svg)](https://travis-ci.org/matsu-chara/enjo)
 [![Code Climate](https://codeclimate.com/github/matsu-chara/enjo/badges/gpa.svg)](https://codeclimate.com/github/matsu-chara/enjo)
 
 > jQueryしか使えない！そんなときでも大丈夫。

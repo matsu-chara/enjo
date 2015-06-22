@@ -1,8 +1,13 @@
 {
+  "scripts": {
+    "test": "./node_modules/.bin/mocha-phantomjs test/test.html"
+  },
   "devDependencies": {
     "chai": "^3.0.0",
     "json-server": "^0.7.19",
     "mocha": "^2.2.5",
+    "mocha-phantomjs": "^3.5.3",
+    "phantomjs": "^1.9.17",
     "sinon": "^1.15.3"
   }
 }
