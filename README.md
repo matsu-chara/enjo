@@ -1,5 +1,7 @@
 # enjo
 
+[![Bower version](https://badge.fury.io/bo/enjo.svg)](http://badge.fury.io/bo/enjo)
+
 [![Code Climate](https://codeclimate.com/github/matsu-chara/enjo/badges/gpa.svg)](https://codeclimate.com/github/matsu-chara/enjo)
 
 > jQueryしか使えない！そんなときでも大丈夫。
@@ -18,8 +20,8 @@ enjoはjQueryに依存した双方向データバインディングができるM
 そのままでも動きますが、
 
 ```
-GET /todos
-POST /todos
+GET    /todos
+POST   /todos
 DELETE /todos/:id
 ```
 
@@ -65,7 +67,7 @@ JavaScriptでは、以下のように初期化を行います。
 まず、enjoはjQueryに依存しているので
 `var e = enjo($);`としてjQueryを渡しましょう。
 
-あとは`e.Repository`や`e.Model()`, `e.ViewModel`をそれぞれのオブジェクトに
+あとは`e.repository`や`e.model()`, `e.viewModel`をそれぞれのオブジェクトに
 渡してあげればOKです。
 
 ```javascript
@@ -76,36 +78,36 @@ $(document).ready(function(){
   var $formView = $containerView.children("#todo-form");
 
   var e = enjo($);
-  var todoRepository = todo.Repository(e.Repository());
-  var todoModel = todo.Model(todoRepository, e.Model());
-  todo.ListViewModel($listView, todoModel, e.ViewModel());
-  todo.FormViewModel($formView, todoModel, e.ViewModel());
+  var todoRepository = todo.repository(e.repository());
+  var todoModel = todo.model(todoRepository, e.model());
+  todo.listViewModel($listView, todoModel, e.viewModel());
+  todo.formViewModel($formView, todoModel, e.viewModel());
 
   todoModel.init();
 });
 ```
 
-### Repository
+### repository
 
-Repositoryは`$.ajax`の薄い（そして不完全な）ラッパーですので、使わなくても大丈夫です。
+repositoryは`$.ajax`の薄い（そして不完全な）ラッパーですので、使わなくても大丈夫です。
 
 下記のようにコールバックを指定して簡単にリクエストを飛ばすことが出来ます。
 
 ```javascript
-enjoR.get("/todo", done);
+enjoR.getRequest("/todo", done);
 ```
 
 ｲﾁｵｳﾍﾞﾝﾘ( ⁰⊖⁰)
 
-### Model
+### model
 
 モデルの値は専用の`getter/setter`で管理します。
 setterで値を変更すると`enjo-update`というイベントが飛ぶので、
-それをViewModelで取得してViewを書き換えることが出来ます。
+それをviewModelで取得してViewを書き換えることが出来ます。
 
 ```javascript
 var that = {};
-var enjoM = enjo($).Model();
+var enjoM = enjo($).model();
 
 /*
  * 値の更新時に$(bindParamsの第一引数).trigger("enjo-update", bindParamsの第二引数)という
@@ -122,17 +124,17 @@ var t = fire.get("todos");
 fire.set("todos", t);
 ```
 
-### ViewModel
+### viewModel
 
-ViewとBindしたい値をセットにして、bindParamsメソッドに渡せば、
-Viewのchangedイベントを取得して、値を自動的に反映してくれます。
+viewとBindしたい値をセットにして、bindParamsメソッドに渡せば、
+viewのchangedイベントを取得して、値を自動的に反映してくれます。
 また、`fire.set`メソッドで値を更新すれば、viewにも自動的に反映してくれます。
 
-好きなViewに対してカスタムeventとコールバックをbindすることも可能です。
+好きなviewに対してカスタムeventとコールバックをbindすることも可能です。
 
 
 ```javascript
-var enjoVm = enjo($).ViewModel();
+var enjoVm = enjo($).viewModel();
 
 var fire = enjoVm.bindParams({
   url: {
@@ -160,7 +162,7 @@ var fire = enjoVm.bindParams({
 });
 ```
 
-Viewからの変更ではなくてモデルの変更を受け取りたい場合は、
+viewからの変更ではなくてモデルの変更を受け取りたい場合は、
 constructorで`enjoVm.init`よんであげましょう。
 変更を受け取りたいモデルと、コールバックを渡すと、
 モデルの変更のたびにコールバックが呼ばれます。
