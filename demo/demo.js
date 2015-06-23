@@ -97,9 +97,25 @@
   };
 
   todo.formViewModel = function($views, model, enjoVm) {
+    function construct() {
+      enjoVm.init(model, onUpdate);
+    }
+
+    function onUpdate(event, data) {
+    }
+
+    construct();
+  };
+
+  todo.formView = function($viewModel) {
+    var that = {};
+
     var $url     = $views.url;
     var $content = $views.content;
     var $submit  = $views.submit;
+
+    function render() {
+    }
 
     // viewとbindされた値(setで値を更新すればViewにも反映される)
     // eventとコールバックをbindすることも可能
@@ -130,34 +146,24 @@
         }
       }
     });
-
-    function construct() {
-      render();
-      enjoVm.init(model, onUpdate);
-    }
-
-    function render() {
-    }
-
-    function onUpdate(event, data) {
-    }
-
     construct();
+    return that;
   };
 
-  todo.listViewModel = function($view, model, enjoVm) {
+  todo.listViewModel = function(model, enjoVm) {
     function construct() {
-      render([]);
       enjoVm.init(model, onUpdate);
-    }
-
-    function render(todos) {
-      var ul = createtodoList(todos);
-      $view.html(ul);
     }
 
     function onUpdate(event, data) {
       render(data.todos);
+    }
+  };
+
+  todo.listView = function() {
+    function render(todos) {
+      var ul = createtodoList(todos);
+      $view.html(ul);
     }
 
     // Todo配列をulに変換
@@ -201,8 +207,6 @@
       */
       return li.append(deleteButton).append(span.append(a));
     }
-
-    construct();
   };
 
   $(document).ready(function(){
