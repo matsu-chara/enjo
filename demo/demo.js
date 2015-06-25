@@ -1,9 +1,12 @@
+var enjoComponents;
+
 (function() {
   "use strict";
 
   // namespace todo
   var todo = todo || {};
 
+  // repository {{{
   todo.repository = function(enjoR) {
     var that = {};
 
@@ -22,7 +25,9 @@
     };
     return that;
   };
+  // }}}
 
+  // model {{{
   todo.model = function(repository, enjoM) {
     var that = {};
 
@@ -32,10 +37,10 @@
 
     that.init = function() {
       // 初回更新
-      update();
+      updateRequest();
 
       // 定期的に更新
-      setInterval(update, 3 * 1000);
+      setInterval(updateRequest, 3 * 1000);
     };
 
     that.newtodo = function(url, content) {
@@ -47,8 +52,9 @@
     };
 
     that.remove = function(todo) {
+      // 登録中のものは削除しない(idが無いので削除出来ない)
       if (that.isRegistering(todo)) {
-        // return;
+        return;
       }
 
       // 対象要素以外を抽出する形で更新
@@ -68,7 +74,7 @@
           return m !== todo;
         }));
 
-        update();
+        updateRequest();
       });
     };
 
@@ -83,7 +89,7 @@
       return err;
     };
 
-    function update() {
+    function updateRequest() {
       repository.gettodos(function(_todos){
         var todos = fire.get("todos");
 
@@ -95,137 +101,91 @@
 
     return that;
   };
+  // }}}
 
-  todo.formViewModel = function($views, model, enjoVm) {
+  todo.formViewModel = function(model, enjoVm) {
+    var that = {};
+
+    that.params = enjoVm.bindParams(that, {
+      content: "テストTodo",
+      url: "http://google.com",
+      submit: {
+        callback: function(e) {
+          e.preventDefault();
+          console.log([fire.get("content"), fire.get("url")].join(", "));
+        }
+      }
+    });
+
     function construct() {
       enjoVm.init(model, onUpdate);
     }
 
     function onUpdate(event, data) {
+      // nothing to do
     }
 
-    construct();
-  };
-
-  todo.formView = function($viewModel) {
-    var that = {};
-
-    var $url     = $views.url;
-    var $content = $views.content;
-    var $submit  = $views.submit;
-
-    function render() {
-    }
-
-    // viewとbindされた値(setで値を更新すればViewにも反映される)
-    // eventとコールバックをbindすることも可能
-    var fire = enjoVm.bindParams({
-      url: {
-        $view: $url,
-        value: "http://google.com"
-      },
-      content: {
-        $view: $content,
-        value: "テストTodo"
-      },
-      submit: {
-        $view: $submit,
-        event: "click",
-        callback: function(e, fire) {
-          e.preventDefault();
-          var m = model.newtodo(
-            fire.get("url"),
-            fire.get("content")
-          );
-          var err = model.validate(m);
-          if(err === "") {
-            model.add(m);
-          } else {
-            console.error(err);
-          }
-        }
-      }
-    });
     construct();
     return that;
   };
 
-  todo.listViewModel = function(model, enjoVm) {
+  todo.formView = function($rootView, viewModel, enjoV) {
+    var that = {};
+
     function construct() {
-      enjoVm.init(model, onUpdate);
+      enjoV.init(viewModel, onUpdate);
+      render(viewModel.params);
     }
 
-    function onUpdate(event, data) {
-      render(data.todos);
-    }
-  };
-
-  todo.listView = function() {
-    function render(todos) {
-      var ul = createtodoList(todos);
-      $view.html(ul);
+    function onUpdate(event, updatedParams) {
+      render(viewModel.params);
     }
 
-    // Todo配列をulに変換
-    function createtodoList(todos) {
-      var ul = $("<ul>").attr("id", "todo-ul");
+    function render(params) {
+      var html = $([
+        "<form id='todo-form'>",
+          "<div>",
+            "<label>表示文字列:",
+              "<input type='text' name='todo-content' id='todo-content'",
+                "onChange=" + "enjoComponents.formParams.set('content', 'aaa')",
+                "value='" + params.get("content") + "'>",
+            "</label>",
+          "</div>",
+          "<div>",
+            "<label>リンク先:",
+              "<input type='text' name='todo-url' id='todo-url'",
+                "onChange=" + "enjoComponents.formParams.set('url', 'bbb')",
+                " value='" + params.get("url") + "'>",
+            "</label>",
+          "</div>",
+          "<div>",
+            "<button id='todo-submit'",
+              "onclick=" + 'enjoComponents.formParams.get("submit").callback(event)' + ">送信",
+            "</button>",
+          "</div>",
+        "</form>"
+      ].join("\n"));
 
-      todos.forEach(function(todo) {
-        var li = createtodoItem(todo);
-        ul.append(li);
-      });
-      return ul;
+      $rootView.html(html);
     }
 
-    // Todoをliに変換
-    function createtodoItem(todo) {
-      var li = $("<li>").addClass("todo-item");
-
-      var deleteButton = $("<button>")
-                          .addClass("todo-delete")
-                          .text("削除")
-                          .click(function() {
-                            model.remove(todo);
-                          });
-
-      var span = $("<span>")
-                  .addClass("todo-content")
-                  .css("color", (todo.id === null)? "#ff0000" : "")
-                  .text(todo.content + ": ");
-
-      var a = $("<a>")
-                .addClass("todo-anchor")
-                .attr("href", todo.url)
-                .attr("target", "_blank")
-                .text(todo.url);
-
-      /*
-        <li>
-          <button>
-          <span><a></span>
-        </li>
-      */
-      return li.append(deleteButton).append(span.append(a));
-    }
+    construct();
+    return that;
   };
 
   $(document).ready(function(){
     // dependent views
-    var $containerView = $("#todo-container");
-    var $listView = $containerView.children("#todo-list");
-    var $formView = $containerView.children("#todo-form");
-    var $formViews = {
-      url: $formView.find("#todo-url"),
-      content : $formView.find("#todo-content"),
-      submit : $formView.find("#todo-submit")
-    };
+    var $containerDiv = $("#todo-container");
+    var $formDiv      = $containerDiv.children("#todo-form");
 
     var e = enjo($);
-    var todoRepository = todo.repository(e.repository());
-    var todoModel = todo.model(todoRepository, e.model());
-    todo.listViewModel($listView, todoModel, e.viewModel());
-    todo.formViewModel($formViews, todoModel, e.viewModel());
+    var todoRepository    = todo.repository(e.repository());
+    var todoModel         = todo.model(todoRepository, e.model());
+    var todoFormViewModel = todo.formViewModel(todoModel, e.viewModel());
+    todo.formView($formDiv, todoFormViewModel, e.view());
 
-    todoModel.init();
+    enjoComponents = {
+      formParams: todoFormViewModel.params
+    };
   });
 }());
